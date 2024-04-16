@@ -2,6 +2,7 @@ package ru.inno.courses.certification.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.github.javafaker.Faker;
 
 import java.util.Objects;
 
@@ -72,13 +73,14 @@ public class Employee {
         return email;
     }
 
-    public Employee(Boolean isActive, String firstName, String lastName, String middleName, String phone, String email, String birthdate, String avatar_url, int companyId) {
+    public Employee(Boolean isActive,  String birthdate, String avatar_url, int companyId) {
         this.isActive = isActive;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.phone = phone;
-        this.email = email;
+        Faker faker = new Faker();
+        this.firstName = faker.name().firstName();
+        this.lastName = faker.name().lastName();
+        this.middleName = faker.name().username();
+        this.phone = faker.phoneNumber().subscriberNumber();
+        this.email = faker.internet().emailAddress();
         this.birthdate = birthdate;
         this.avatar_url = avatar_url;
         this.companyId = companyId;

@@ -20,21 +20,23 @@ public class XClientsContractTests {
 
 
 
+
     @BeforeAll
     public static void setup() throws IOException {
         XClients.getToken("bloom", "fire-fairy");
+
     }
 
     @BeforeEach
     public void setUp() {
         Company company = new Company("Beta bank");
         companyId = XClients.createNewCompany(company);
+
     }
 
     @Test
     void createNewEmployee() {
-        Employee employee = new Employee(true, "Alex", "Smirnof", "Egorovich",
-                "9133546665", "ya@mail.ru", "1995-05-04", "pixels.com/123", companyId);
+        Employee employee = new Employee(true,"2005-12-05","pixels.com/123", companyId);
         int newEmployeeId = XClients.createNewEmployee(employee);
         assertNotNull(newEmployeeId);
         assertNotEquals(0, newEmployeeId);
@@ -42,8 +44,7 @@ public class XClientsContractTests {
 
     @Test
     void getEmployeeInfo() {
-        Employee employee = new Employee(true, "Alex", "Smirnof", "Egorovich",
-                "9133546665", "ya@mail.ru", "1995-05-04", "pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05","pixels.com/123", companyId);
         int employeeId = XClients.createNewEmployee(employee);
         Employee employeeInfo = XClients.getEmployeeInfo(employeeId);
 
@@ -60,8 +61,7 @@ public class XClientsContractTests {
 
     @Test
     void listEmployees() {
-        Employee employee = new Employee(true, "Alex", "Smirnof", "Egorovich",
-                "9133546665", "ya@mail.ru", "1995-05-04", "pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05","pixels.com/123", companyId);
         XClients.createNewEmployee(employee);
         employee.setFirstName("John");
         employee.setLastName("Dought");
@@ -72,8 +72,7 @@ public class XClientsContractTests {
 
     @Test
     public void patchEmployee() {
-        Employee employee = new Employee(true, "Alex", "Smirnof", "Egorovich",
-                "9133546665", "ya@mail.ru", "1995-05-04", "pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05","pixels.com/123", companyId);
         int employeeId = XClients.createNewEmployee(employee);
         String patchEmployeeParams = """
                 {

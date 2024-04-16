@@ -8,6 +8,7 @@ import ru.inno.courses.certification.model.Company;
 import ru.inno.courses.certification.model.Employee;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -17,8 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class XClientsContractTests {
 
     static int companyId;
-
-
 
 
     @BeforeAll
@@ -36,7 +35,7 @@ public class XClientsContractTests {
 
     @Test
     void createNewEmployee() {
-        Employee employee = new Employee(true,"2005-12-05","pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05", "pixels.com/123", companyId);
         int newEmployeeId = XClients.createNewEmployee(employee);
         assertNotNull(newEmployeeId);
         assertNotEquals(0, newEmployeeId);
@@ -44,7 +43,7 @@ public class XClientsContractTests {
 
     @Test
     void getEmployeeInfo() {
-        Employee employee = new Employee(true, "2005-12-05","pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05", "pixels.com/123", companyId);
         int employeeId = XClients.createNewEmployee(employee);
         Employee employeeInfo = XClients.getEmployeeInfo(employeeId);
 
@@ -61,7 +60,7 @@ public class XClientsContractTests {
 
     @Test
     void listEmployees() {
-        Employee employee = new Employee(true, "2005-12-05","pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05", "pixels.com/123", companyId);
         XClients.createNewEmployee(employee);
         employee.setFirstName("John");
         employee.setLastName("Dought");
@@ -72,7 +71,7 @@ public class XClientsContractTests {
 
     @Test
     public void patchEmployee() {
-        Employee employee = new Employee(true, "2005-12-05","pixels.com/123", companyId);
+        Employee employee = new Employee(true, "2005-12-05", "pixels.com/123", companyId);
         int employeeId = XClients.createNewEmployee(employee);
         String patchEmployeeParams = """
                 {

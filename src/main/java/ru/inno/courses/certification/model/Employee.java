@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class Employee {
     int id;
-    Boolean isActive = null;
+    Boolean isActive;
     String firstName;
     String lastName;
     String middleName;
@@ -21,13 +21,24 @@ public class Employee {
     String avatar_url;
     int companyId;
 
+    public Employee(int companyId) {
+        Faker faker = new Faker();
+        this.isActive = true;
+        this.firstName = faker.name().firstName();
+        this.lastName = faker.name().lastName();
+        this.middleName = faker.name().username();
+        this.phone = faker.phoneNumber().subscriberNumber();
+        this.email = faker.internet().emailAddress();
+        this.birthdate = "1998-05-05";
+        this.avatar_url = "http://pixels.com/123";
+        this.companyId = companyId;
+    }
+
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Boolean getActive() {
         return isActive;
@@ -73,18 +84,7 @@ public class Employee {
         return email;
     }
 
-    public Employee(Boolean isActive,  String birthdate, String avatar_url, int companyId) {
-        this.isActive = isActive;
-        Faker faker = new Faker();
-        this.firstName = faker.name().firstName();
-        this.lastName = faker.name().lastName();
-        this.middleName = faker.name().username();
-        this.phone = faker.phoneNumber().subscriberNumber();
-        this.email = faker.internet().emailAddress();
-        this.birthdate = birthdate;
-        this.avatar_url = avatar_url;
-        this.companyId = companyId;
-    }
+
 
     public void setEmail(String email) {
         this.email = email;

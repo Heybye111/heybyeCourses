@@ -6,8 +6,8 @@ import java.sql.*;
 
 public class EmployeeRepositoryJDBC implements EmployeeRepository {
 
-    private static final String SQL_INSERT_EMPLOYEE = "INSERT INTO employee(\"first_name\", \"last_name\", \"middle_name\", \"is_active\", \"company_id\", \"avatar_url\", \"birthdate\", \"phone\") "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT_EMPLOYEE = "INSERT INTO employee(\"is_active\", \"first_name\", \"last_name\", \"middle_name\", \"phone\", \"email\", \"birthdate\", \"avatar_url\", \"company_id\" ) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     public static final String SQL_SELECT_BY_ID = "SELECT * FROM employee where id = ?";
     private final Connection connection;
 
@@ -16,18 +16,20 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
     }
 
     @Override
-    public int create(String first_name, String last_name, String middle_name, boolean is_active,
-                      int company_id, String avatar_url, String birthdate, String phone) throws SQLException {
+    public int create(boolean is_active, String first_name, String last_name, String middle_name,String phone,String email,
+                        String birthdate, String avatar_url,  int company_id) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(SQL_INSERT_EMPLOYEE, Statement.RETURN_GENERATED_KEYS);
 
-        statement.setString(1, first_name);
-        statement.setString(2, last_name);
-        statement.setString(3, middle_name);
-        statement.setBoolean(4, is_active);
-        statement.setInt(5, company_id);
-        statement.setString(6, avatar_url);
+        statement.setBoolean(1, is_active);
+        statement.setString(2, first_name);
+        statement.setString(3, last_name);
+        statement.setString(4, middle_name);
+        statement.setString(5, phone);
+        statement.setString(6, email);
         statement.setDate(7, Date.valueOf(birthdate));
-        statement.setString(8, phone);
+        statement.setString(8, avatar_url);
+        statement.setInt(9, company_id);
+
 
         statement.executeUpdate();
 
@@ -47,12 +49,13 @@ public class EmployeeRepositoryJDBC implements EmployeeRepository {
             return new EmployeeDB(
                     resultSet.getInt("id"),
                     resultSet.getBoolean("is_active"),
+                    resultSet.getString("create_timestamp"),
+                    resultSet.getString("change_timestamp"),
                     resultSet.getString("first_name"),
                     resultSet.getString("last_name"),
                     resultSet.getString("middle_name"),
-                    resultSet.getString("create_timestamp"),
-                    resultSet.getString("change_timestamp"),
                     resultSet.getString("phone"),
+                    resultSet.getString("email"),
                     resultSet.getString("birthdate"),
                     resultSet.getString("avatar_url"),
                     resultSet.getInt("company_id"));

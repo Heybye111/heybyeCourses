@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import ru.inno.courses.certification.model.Company;
 import ru.inno.courses.certification.model.Employee;
+import ru.inno.courses.certification.model.patchedEmployee;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class XClients {
         return TOKEN;
     }
 
-    public static Employee patchEmployeeInfo(int employeeId, String patchEmployeeParams) {
+    public static patchedEmployee patchEmployeeInfo(int employeeId, String patchEmployeeParams) {
         return given()
                 .log().all()
                 .contentType(ContentType.JSON)
@@ -43,7 +44,7 @@ public class XClients {
                 .then()
                 .log().all()
                 .statusCode(200)
-                .extract().as(Employee.class);
+                .extract().as(patchedEmployee.class);
     }
 
     public static int createNewCompany(Company companyName) {

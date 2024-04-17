@@ -89,6 +89,7 @@ public class XClientsTests {
         assertEquals("Simpson", list.get(1).getLastName());
 
     }
+
     @Test
     @Tag("API")
     @DisplayName("Проверка получения одного сотрудника по companyId")
@@ -155,8 +156,8 @@ public class XClientsTests {
         assertEquals(patchedEmployee.isActive(), employeeDB.isActive());
 
 
-
     }
+
     @Test
     @DisplayName("Сохранение firstName в БД при создании клиента")
     @Tag("DB_Tests")
@@ -203,6 +204,7 @@ public class XClientsTests {
         assertEquals(employee.getPhone(), employeeDB.getPhone());
 
     }
+
     @Test
     @DisplayName("Сохранение email в БД при создании клиента")
     @Tag("DB_Tests")
@@ -214,6 +216,7 @@ public class XClientsTests {
         assertEquals(employee.getEmail(), employeeDB.getEmail());
 
     }
+
     @Test
     @DisplayName("Сохранение birthdate в БД при создании клиента")
     @Tag("DB_Tests")
@@ -225,6 +228,7 @@ public class XClientsTests {
         assertEquals(employee.getBirthdate(), employeeDB.getBirthdate());
 
     }
+
     @Test
     @DisplayName("Сохранение avatarUrl в БД при создании клиента")
     @Tag("DB_Tests")

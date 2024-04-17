@@ -17,6 +17,7 @@ public class patchedEmployee {
         this.url = url;
 
     }
+
     public patchedEmployee(int id, boolean isActive, String email, String url, String lastName) {
 
         this.id = id;
@@ -67,6 +68,7 @@ public class patchedEmployee {
     public void setUrl(String url) {
         this.url = url;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

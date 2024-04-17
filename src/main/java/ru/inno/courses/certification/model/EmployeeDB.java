@@ -27,6 +27,7 @@ public class EmployeeDB {
     public String getBirthdate() {
         return birthdate;
     }
+
     public String getEmail() {
         return email;
     }
@@ -64,7 +65,7 @@ public class EmployeeDB {
     }
 
     public EmployeeDB(int id, boolean active, String createTimestamp, String changeTimestamp, String firstName, String lastName,
-                      String middleName, String phone,String email, String birthdate, String avatar_url, int companyId) {
+                      String middleName, String phone, String email, String birthdate, String avatar_url, int companyId) {
         this.id = id;
         this.active = active;
         this.createTimestamp = createTimestamp;
